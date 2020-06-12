@@ -23,39 +23,51 @@ public class IntToEng {
     	String[] ten_nine = {"ten","eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
     	if(n==0) eng = "zero";
     	if(n>=10 && n<20) {
-    		int t_n = n%10;
-    		return ten_nine[t_n];
+    		reigai(n,ten_nine);
     	}
     	if(n==100) eng = "one-hundred";
+    	if(n==1000) eng = "thousand";
+    	String handred = "handred";
     	
-    	String[] ichi = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+    	String[] ichi = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
     	String[] jyu = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}; 
     	
     	if(n>=0 && n<10) {
     		int o_n = n%10;
     		return ichi[o_n];
     	}
+    	String[] hyaku = new String[10];
+    	hyaku[0] = "";
+    	for(int i=1; i<hyaku.length; i++) {
+    		hyaku[i] = ichi[i] + "-" + handred;
+    	}
+    
     	
     	ArrayList<String> english = new ArrayList<String>();
     	english.add(ichi[number.get(0)]);
-    	english.add(jyu[number.get(1)]);
+    	if(n>=10) english.add(jyu[number.get(1)]);
+    	if(n>=100) english.add(hyaku[number.get(2)]);
     	
-    	
-    	
-    	
-			eng = english.get(english.size()-1)+ "-";
+		eng = english.get(english.size()-1)+ " ";
 		
     	for(int i=english.size()-2; i>=0; i--) {
-    		
     		
     		if(i==0) { 
     			eng = eng +english.get(i);
     			break;
     		}
-    		eng = eng + english.get(i) + "-";
+    		if(number.get(1) == 1) {
+    			eng = eng + reigai(number.get(0),ten_nine);
+    			break;
+    		}
+    		eng = eng + english.get(i) + " ";
     		
     	}
     	
         return eng;
+    }
+    static String reigai(int n, String[] ten_nine) {
+		int t_n = n%10;
+		return ten_nine[t_n];
     }
 }
