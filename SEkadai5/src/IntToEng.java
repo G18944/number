@@ -21,13 +21,18 @@ public class IntToEng {
     	
     	   	
     	String[] ten_nine = {"ten","eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
-    	if(n==0) eng = "zero";
+    	if(n==0) {
+    		eng = "zero";
+    		return eng;
+    	}
     	if(n>=10 && n<20) {
     		reigai(n,ten_nine);
     	}
-    	if(n==100) eng = "one-hundred";
-    	if(n==1000) eng = "thousand";
-    	String handred = "handred";
+
+    	if(n==10000) {
+    		eng = "ten-thousand";
+    		return eng;
+    	}
     	
     	String[] ichi = {"", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
     	String[] jyu = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"}; 
@@ -39,7 +44,13 @@ public class IntToEng {
     	String[] hyaku = new String[10];
     	hyaku[0] = "";
     	for(int i=1; i<hyaku.length; i++) {
-    		hyaku[i] = ichi[i] + "-" + handred;
+    		hyaku[i] = ichi[i] + "-" + "handred";
+    	}
+    	
+    	String[] sen = new String[10];
+    	sen[0] = "";
+    	for(int i=1; i<sen.length; i++) {
+    		sen[i] = ichi[i] + "-" + "thousand";
     	}
     
     	
@@ -47,6 +58,7 @@ public class IntToEng {
     	english.add(ichi[number.get(0)]);
     	if(n>=10) english.add(jyu[number.get(1)]);
     	if(n>=100) english.add(hyaku[number.get(2)]);
+    	if(n>=1000) english.add(sen[number.get(3)]);
     	
 		eng = english.get(english.size()-1)+ " ";
 		
