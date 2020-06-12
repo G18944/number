@@ -11,17 +11,13 @@ public class IntToEng {
     // 数値を英訳する変換するメソッド
     static String translateEng(int n) {
     	String eng = null;
+    	String[] ichi = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+    	String[] ten_nine = {"ten","eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
     	if(n==0) eng = "zero";
-    	if(n==1) eng = "one";
-    	if(n==2) eng = "two";
-    	if(n==3) eng = "three";
-    	if(n==4) eng = "four";
-    	if(n==5) eng = "five";
-    	if(n==6) eng = "six";
-    	if(n==7) eng = "seven";
-    	if(n==8) eng = "eight";
-    	if(n==9) eng = "nine";
-    	if(n==10) eng = "ten";
+    	if(n>=10 && n<20) {
+    		int t_n = n%10;
+    		return ten_nine[t_n];
+    	}
     	
     	
         return eng;
